@@ -11,6 +11,7 @@ setup(
         Extension("leven._levenshtein", ["leven/_levenshtein.cpp"],
                   include_dirs=["leven"])
     ],
+    include_package_data=True,
     install_requires=["six", "nose"],
     url='https://github.com/semanticize/leven',
     test_suite='nose.collector'
