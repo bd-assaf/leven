@@ -8,10 +8,11 @@ setup(
     maintainer_email='l.j.buitinck@esciencecenter.nl',
     packages=['leven'],
     ext_modules=[
-        Extension("leven._levenshtein", ["leven/_levenshtein.cpp"],
+        Extension("leven._levenshtein", ["leven/_levenshtein.pyx"],
                   include_dirs=["leven"])
     ],
     include_package_data=True,
+    setup_requires=["cython"],
     install_requires=["six", "nose"],
     url='https://github.com/semanticize/leven',
     test_suite='nose.collector'
