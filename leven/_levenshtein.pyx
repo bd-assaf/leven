@@ -15,14 +15,14 @@
 
 # distutils: language = c++
 
-from cpython cimport PyUnicode_AS_UNICODE, PyUnicode_GET_SIZE
+# from cpython cimport PyUnicode_AS_UNICODE, PyUnicode_GET_SIZE
 
 
 cdef extern from "levenshtein_types.h":
     unsigned levenshtein_char(const char *, size_t,
                               const char *, size_t) except +
-    unsigned levenshtein_Py_UNICODE(const Py_UNICODE *, size_t,
-                               const Py_UNICODE *, size_t) except +
+#    unsigned levenshtein_Py_UNICODE(const Py_UNICODE *, size_t,
+#                               const Py_UNICODE *, size_t) except +
 
 
 def levenshtein(a, b, normalize=False):
@@ -50,9 +50,9 @@ def levenshtein(a, b, normalize=False):
 
     if isinstance(a, bytes) and isinstance(b, bytes):
         d = levenshtein_char(a, m, b, n)
-    elif isinstance(a, unicode) and isinstance(b, unicode):
-        d = levenshtein_Py_UNICODE(PyUnicode_AS_UNICODE(a), m,
-                                   PyUnicode_AS_UNICODE(b), n)
+#    elif isinstance(a, unicode) and isinstance(b, unicode):
+#        d = levenshtein_Py_UNICODE(PyUnicode_AS_UNICODE(a), m,
+#                                   PyUnicode_AS_UNICODE(b), n)
     else:
         raise TypeError("Type mismatch: expected (bytes, bytes) or ({0}, {0}),"
                         " got ({1}, {2})".format(unicode, type(a), type(b)))
