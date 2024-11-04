@@ -8,8 +8,12 @@ setup(
     maintainer_email='l.j.buitinck@esciencecenter.nl',
     packages=['leven'],
     ext_modules=[
-        Extension("leven._levenshtein", ["leven/_levenshtein.pyx"],
-                  include_dirs=["leven"])
+        Extension(
+            "leven._levenshtein",
+            ["leven/_levenshtein.pyx"],
+            include_dirs=["leven"],
+            language="c++",
+        )
     ],
     include_package_data=True,
     setup_requires=["cython"],
